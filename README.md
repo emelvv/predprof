@@ -5,7 +5,7 @@
 Скачать и установить интерпритатор языка python
 
 ## Технологии
--[Python 3.12.1](https://www.python.org/downloads/release/python-3121/)
+- [Python 3.12.1](https://www.python.org/downloads/release/python-3121/)
 
 ## Как использовать проект
 
