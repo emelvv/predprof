@@ -25,15 +25,17 @@ def read_table(filename):
     return table
 
 def find_in_table(table, name):
-    """Ищет артиста по имени и выдаёт про него информацию
+    """Ищет песни артиста по имени и выдаёт про него информацию
 
     Параметры:
     table -- основная таблица
     name -- имя артиста
     """
+    songs = []
     for row in table:
         if row["artist_name"] == name:
-            return row
+           songs.append(row)
+    return songs
 
 def write_table(table, name):
     """Создаёт таблицу со столбцами track_name, streams, date для одного артиста
@@ -42,13 +44,12 @@ def write_table(table, name):
     table -- основная таблица
     name -- имя артиста
     """
-    artist_row = find_in_table(table, name)
-    track_name, streams, date = artist_row["track_name"], artist_row["streams"], artist_row["date"]
+    artist_rows = [list(x.values()) for x in find_in_table(table, name)]
 
     with open("songs_artst.csv", "w", encoding="utf8", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["track_name", "streams", "date"])
-        writer.writerow([track_name, streams, date])
+        writer.writerows(artist_rows)
 
 
 if __name__ == "__main__":
